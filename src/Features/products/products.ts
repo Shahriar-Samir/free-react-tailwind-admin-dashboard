@@ -4,14 +4,16 @@ import { Product } from "../../types/product"
 
 
 
-const initialState: object[] = []
+const initialState = {
+    data:[]
+}
 
 const productsSlice = createSlice({
     name:'products',
     initialState,
     reducers:{
         setProductsData: (state,action)=>{
-            state = action.payload
+            state.data = action.payload
         }
     }
 })
@@ -22,7 +24,6 @@ export default productsSlice.reducer
 export const getProducts = ()=> async (dispatch)=>{
      try{
         const res = await axios.get<Product[]>('https://fakestoreapi.com/products')
-        console.log(res.data)
         dispatch(setProductsData(res.data))
      }
      catch(err){
