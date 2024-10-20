@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
 import { Link } from 'react-router-dom';
 import { IoAddCircleOutline } from "react-icons/io5";
+import { useDispatch, useSelector } from 'react-redux';
+import { Product, ProductsState } from '../types/products2';
+import { getProducts } from '../Features/products/products';
+
+
+
 
 const Products:React.FC = () => {
+    const productsData:Product[] = useSelector((state:ProductsState)=> state.products)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(getProducts())
+    },[])
+
     return (
         <>
           <Breadcrumb pageName="Products" />   
