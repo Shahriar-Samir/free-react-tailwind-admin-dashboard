@@ -9,17 +9,17 @@ const ProductDetails = () => {
     const dispatch = useDispatch()
 
 
-   const productDetails = products.filter(item=>{
-    return item.id === parseInt(id)
-})[0]
+   const productDetails = products.length >0? products.filter(item=>{
+    return item.id === parseInt(id) 
+})[0] : []
 
     useEffect(()=>{
         dispatch(getProducts())
     },[])
     return (
         <main className='w-full'>
-            <div className="hero bg-base-200 min-h-screen ">
-  <div className="hero-content flex-col lg:flex-row-reverse gap-10">
+            <div className="hero bg-base-200 min-h-screen !bg-transparent">
+  <div className="hero-content flex-col lg:flex-row-reverse gap-10 !bg-transparent">
     <img
       src={productDetails.image}
       className="max-w-sm rounded-lg shadow-2xl w-1/2 object-cover lg:h-[400px]" />

@@ -18,64 +18,65 @@ export default function AddProduct() {
               Add new product
             </Link>
 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-  <div className="modal-box">
-  <form action="#">
+  <div className="modal-box dark:bg-black">
+  <form method="dialog">
+      {/* if there is a button in form, it will close the modal */}
+      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-2xl">✕</button>
+    </form>
+  <form>
               <div className="p-6.5">
                 <div className="mb-4.5">
                   <label className="mb-2.5 block text-black dark:text-white">
                     Product Title
                   </label>
                   <input
-                    type="text"
-                    placeholder="Enter your full name"
+                    name="title"
+                    placeholder="Title"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
                 </div>
 
                 <div className="mb-4.5">
                   <label className="mb-2.5 block text-black dark:text-white">
-                    Product 
+                    Product Category
                   </label>
                   <input
-                    type="email"
-                    placeholder="Enter your email address"
+                    placeholder="Category"
+                    name="category"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
                 </div>
 
                 <div className="mb-4.5">
                   <label className="mb-2.5 block text-black dark:text-white">
-                    Password
+                    Product Price
                   </label>
                   <input
-                    type="password"
-                    placeholder="Enter password"
+                    name="price"
+                    placeholder="Price"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
                 </div>
 
                 <div className="mb-5.5">
                   <label className="mb-2.5 block text-black dark:text-white">
-                    Re-type Password
+                    Product Description
                   </label>
-                  <input
-                    type="password"
-                    placeholder="Re-enter password"
+                  <textarea  
+                    placeholder="Description"
+                    name="description"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
+                  ></textarea>
                 </div>
 
                 <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
-                  Sign Up
+                  Add new product
                 </button>
               </div>
             </form>
-    <div className="modal-action">
-      <form method="dialog">
-        {/* if there is a button in form, it will close the modal */}
-        <button className="btn">Close</button>
+      <form method="dialog" className="flex justify-center px-6">
+        <button className="btn w-full btn-error text-white">Cancel</button>
       </form>
-    </div>
   </div>
 </dialog>
     </>
