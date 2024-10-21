@@ -1,9 +1,23 @@
 import { IoAddCircleOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import { addProduct } from "../../Features/products/products";
+import { useDispatch } from "react-redux";
 
 
 export default function AddProduct() {
+      const dispatch = useDispatch()
 
+  const addProductHandler = (e)=>{
+      e.preventDefault()
+      const form = e.target 
+      const title = form.title.value
+      const image = form.image.value
+      const category = form.category.value
+      const price = form.price.value
+      const description = form.description.value
+      const productData = {title,category,price,description,image}
+      dispatch(addProduct(productData))
+  }
 
   return (
     <>
@@ -23,7 +37,7 @@ export default function AddProduct() {
       {/* if there is a button in form, it will close the modal */}
       <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-2xl">✕</button>
     </form>
-  <form>
+  <form onSubmit={addProductHandler}>
               <div className="p-6.5">
                 <div className="mb-4.5">
                   <label className="mb-2.5 block text-black dark:text-white">
@@ -32,6 +46,16 @@ export default function AddProduct() {
                   <input
                     name="title"
                     placeholder="Title"
+                    className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                  />
+                </div>
+                <div className="mb-4.5">
+                  <label className="mb-2.5 block text-black dark:text-white">
+                    Product Image URL
+                  </label>
+                  <input
+                    name="image"
+                    placeholder="Product Image URL"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
                 </div>
@@ -53,6 +77,7 @@ export default function AddProduct() {
                   </label>
                   <input
                     name="price"
+                    type="number"
                     placeholder="Price"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
