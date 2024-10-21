@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { IoAddCircleOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
 import { Product, ProductsState } from '../types/products2';
-import { getProducts } from '../Features/products/products';
+import { getProducts, removeProductData } from '../Features/products/products';
 import {Card, CardHeader, CardBody, CardFooter} from "@nextui-org/card";
 import AddProduct from '../components/ProductsPage/AddProduct';
 
@@ -14,12 +14,22 @@ import AddProduct from '../components/ProductsPage/AddProduct';
 const Products:React.FC = () => {
     const productsData:Product[] = useSelector((state)=> state.products.data)
     const dispatch = useDispatch()
+    const location = useLocation()
 
-    console.log(productsData)
-
+  console.log(location.state?.deleteProduct?.id)
     useEffect(()=>{
-        dispatch(getProducts())
+        if(location.state?.deleteProduct?.state){
+          dispatch(removeProductData(location.state?.deleteProduct?.id))
+     
+        }
+        else{
+          dispatch(getProducts())
+    }
     },[])
+
+
+       
+
 
     return (
         <>

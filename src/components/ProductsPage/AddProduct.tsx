@@ -34,7 +34,7 @@ export default function AddProduct() {
 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
   <div className="modal-box dark:bg-black">
   <form method="dialog">
-      {/* if there is a button in form, it will close the modal */}
+
       <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-2xl">✕</button>
     </form>
   <form onSubmit={addProductHandler}>
