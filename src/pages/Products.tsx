@@ -16,7 +16,8 @@ import { ProductsState, ProductType } from '../types/products2';
 
 const Products:React.FC = () => {
     const productsData:ProductType[] = useSelector((state:ProductsState)=> state.products.data)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch()  
+
 
 
     useEffect(()=>{

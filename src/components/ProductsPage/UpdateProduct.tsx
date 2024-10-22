@@ -1,7 +1,7 @@
 import { updateProduct } from "../../Features/products/products";
 import { useDispatch } from "react-redux";
 import {toast} from 'react-toastify'
-import { ProductType } from "../../types/products2";
+import { ProductType } from "../../types/product";
 
 
 export default function UpdateProduct(props:{product:ProductType}) {
@@ -100,7 +100,7 @@ export default function UpdateProduct(props:{product:ProductType}) {
                 </div>
 
                 <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
-                  Add new product
+                  Update Product Data
                 </button>
               </div>
             </form>
