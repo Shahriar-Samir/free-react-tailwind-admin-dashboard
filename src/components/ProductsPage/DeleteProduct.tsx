@@ -1,14 +1,13 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { removeProduct } from '../../Features/products/products';
 import { toast } from 'react-toastify';
 
-const DeleteProduct = ({id}) => {
+const DeleteProduct = (props:{id:number}) => {
+    const {id} = props
     return (
         <>
             
-      <button className="btn btn-error text-white w-full" onClick={()=>document.getElementById(`deleteModal${id}`).showModal()}>Delete Product</button>
+      <button className="btn btn-error text-white w-full" onClick={()=>document.getElementById(`deleteModal${id}`)?.showModal()}>Delete Product</button>
       <DeleteModal id={id}/>
         </>
     );
@@ -21,7 +20,7 @@ const DeleteModal = ({id})=>{
   
     const deleteProduct = ()=>{
         dispatch(removeProduct(id))
-        document.getElementById(`deleteModal${id}`).close()
+        document.getElementById(`deleteModal${id}`)?.close()
         toast.success('Product Deleted Successfully')
     }
   

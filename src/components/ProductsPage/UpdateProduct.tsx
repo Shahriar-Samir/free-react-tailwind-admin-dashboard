@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router-dom";
 import { updateProduct } from "../../Features/products/products";
 import { useDispatch } from "react-redux";
 import {toast} from 'react-toastify'
+import { ProductType } from "../../types/products2";
 
 
-export default function UpdateProduct({product}) {
+export default function UpdateProduct(props:{product:ProductType}) {
+      const {product} = props
       const dispatch = useDispatch()
       const {title,description,image,price,category,id} = product
 

@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
-import { Link, useLocation } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Product, ProductsState } from '../types/products2';
-import { getProducts, removeProductData } from '../Features/products/products';
-import {Card, CardHeader, CardBody, CardFooter} from "@nextui-org/card";
+import { getProducts} from '../Features/products/products';
+import {Card, CardBody} from "@nextui-org/card";
 import AddProduct from '../components/ProductsPage/AddProduct';
 import UpdateProduct from '../components/ProductsPage/UpdateProduct';
 import DeleteProduct from '../components/ProductsPage/DeleteProduct';
 import { ToastContainer } from 'react-toastify';
+import { ProductsState, ProductType } from '../types/products2';
 
 
 
 
 
 const Products:React.FC = () => {
-    const productsData:Product[] = useSelector((state)=> state.products.data)
+    const productsData:ProductType[] = useSelector((state:ProductsState)=> state.products.data)
     const dispatch = useDispatch()
 
 

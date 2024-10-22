@@ -5,7 +5,9 @@ import { useDispatch } from "react-redux";
 import {toast} from 'react-toastify'
 
 
-export default function AddProduct({productsData}) {
+
+export default function AddProduct(props:{productsData:object[]}) {
+      const {productsData} = props
       const dispatch = useDispatch()
 
   
@@ -19,7 +21,7 @@ export default function AddProduct({productsData}) {
       const description = form.description.value
       const productData = {title,category,price,description,image,id:productsData.length+1}
       dispatch(addProduct(productData))
-      document.getElementById('my_modal_5').close()
+      document.getElementById('my_modal_5')?.close()
       toast.success('New Product Added Successfully')
       form.reset()
   }

@@ -3,7 +3,7 @@ export interface Rating{
     count:number
   }
   
-export  interface Product{
+export  interface ProductType{
       id:number,
       title:string,
       price:string,
@@ -14,5 +14,5 @@ export  interface Product{
   }
   
 export  interface ProductsState{
-    products:Product[]
+    products:ProductType[]
   }
