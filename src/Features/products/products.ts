@@ -51,6 +51,7 @@ export const addProduct = (prodcutData:object)=> async (dispatch)=>{
         const res = await axios.post('https://fakestoreapi.com/products', prodcutData)
         if(res.data){
             dispatch(addProductData(prodcutData))
+            return console.log(res.data)
         }
      }
      catch(err){
@@ -61,7 +62,7 @@ export const removeProduct = (productId:number)=> async (dispatch)=>{
      try{
         const res = await axios.delete(`https://fakestoreapi.com/products/${productId}`)
         dispatch(removeProductData(productId))
-        return res.data
+        return console.log('Removed product id '+res.data?.id)
      }
      catch(err){
         console.log(err)
@@ -72,7 +73,7 @@ export const updateProduct = (productData)=> async (dispatch)=>{
      try{
          const res = await axios.put(`https://fakestoreapi.com/products/${productData.id}`)
         dispatch(updateProductData(productData))
-        return res.data
+        return console.log(res.data)
      }
      catch(err){
         console.log(err)

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { updateProduct } from "../../Features/products/products";
 import { useDispatch } from "react-redux";
+import {toast} from 'react-toastify'
 
 
 export default function UpdateProduct({product}) {
@@ -21,11 +22,13 @@ export default function UpdateProduct({product}) {
       const description1 = form.description.value
       const productData = {title:title1,category:category1,price:price1,description:description1,image:image1,id}
       dispatch(updateProduct(productData))
+      document.getElementById(`my_modal_${id}`).close()
+      toast.success('Product Data updated Successfully')
   }
 
   return (
     <>
-          <button className="btn btn-primary"   onClick={()=>document.getElementById(`my_modal_${id}`).showModal()}>Update Product</button>
+          <button className="btn btn-primary w-full"   onClick={()=>document.getElementById(`my_modal_${id}`).showModal()}>Update Product</button>
    
 <dialog id={`my_modal_${id}`} className="modal modal-bottom sm:modal-middle">
   <div className="modal-box dark:bg-black">

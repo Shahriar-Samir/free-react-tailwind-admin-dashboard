@@ -2,6 +2,7 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { addProduct } from "../../Features/products/products";
 import { useDispatch } from "react-redux";
+import {toast} from 'react-toastify'
 
 
 export default function AddProduct({productsData}) {
@@ -18,6 +19,9 @@ export default function AddProduct({productsData}) {
       const description = form.description.value
       const productData = {title,category,price,description,image,id:productsData.length+1}
       dispatch(addProduct(productData))
+      document.getElementById('my_modal_5').close()
+      toast.success('New Product Added Successfully')
+      form.reset()
   }
 
   return (

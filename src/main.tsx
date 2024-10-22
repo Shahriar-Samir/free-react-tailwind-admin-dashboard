@@ -6,6 +6,7 @@ import './css/style.css';
 import './css/satoshi.css';
 import 'jsvectormap/dist/css/jsvectormap.css';
 import 'flatpickr/dist/flatpickr.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 import store from './Features/store';
 import {NextUIProvider} from "@nextui-org/react";
