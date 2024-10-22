@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts, removeProduct } from '../Features/products/products';
 import { useNavigate, useParams } from 'react-router-dom';
+import UpdateProduct from '../components/ProductsPage/UpdateProduct';
 
 const ProductDetails = () => {
     const {id} = useParams()
@@ -9,15 +10,18 @@ const ProductDetails = () => {
     const dispatch = useDispatch()
 
 
-   const productDetails = products.length >0? products.filter(item=>{
+   const productDetails = products?.length >0? products.filter(item=>{
     return item.id === parseInt(id) 
 })[0] : []
-
+    console.log(products)
     useEffect(()=>{
-        dispatch(getProducts())
+        if(products?.length<1){
+          dispatch(getProducts())
+        }
     },[])
     return (
         <main className='w-full'>
+      
             <div className="hero bg-base-200 min-h-screen !bg-transparent">
   <div className="hero-content flex-col lg:flex-row-reverse gap-10 !bg-transparent">
     <img
@@ -25,11 +29,19 @@ const ProductDetails = () => {
       className="max-w-sm rounded-lg shadow-2xl w-1/2 object-cover lg:h-[400px]" />
     <div>
       <h1 className="text-2xl font-bold">{productDetails.title}</h1>
-      <p className="py-6">
+      <p className="py-2">
        {productDetails.description}
       </p>
-      <button className="btn btn-primary">Update Product</button>
+      <p className="py-2">
+       Price: ${productDetails.price}
+      </p>
+      <p className="py-2">
+       Category: ${productDetails.category}
+      </p>
+      <div className='flex mt-4 gap-5'>
+
       <button className="btn btn-primary" onClick={()=>document.getElementById(`deleteModal${id}`).showModal()}>Delete Product</button>
+      </div>
     </div>
   </div>
 </div>
@@ -38,7 +50,9 @@ const ProductDetails = () => {
     );
 };
 
-export default ProductDetails;
+export default ProductDetails;`
+
+`
 
 const DeleteModal = ({id})=>{
   const dispatch = useDispatch()
@@ -48,7 +62,7 @@ const DeleteModal = ({id})=>{
       dispatch(removeProduct(id))
       .then(res=>{
         if(res){
-          navigate('/products',{state:{deleteProduct:{id,state:true}}})
+          navigate('/products')
         }
       })
       .catch((err)=>{

@@ -1,38 +1,33 @@
-import { IoAddCircleOutline } from "react-icons/io5";
-import { Link } from 'react-router-dom';
-import { addProduct } from "../../Features/products/products";
+import { useNavigate } from "react-router-dom";
+import { updateProduct } from "../../Features/products/products";
 import { useDispatch } from "react-redux";
 
 
-export default function AddProduct({productsData}) {
+export default function UpdateProduct({product}) {
       const dispatch = useDispatch()
+      const {title,description,image,price,category,id} = product
 
-  
+
+      
+
+
   const addProductHandler = (e)=>{
       e.preventDefault()
       const form = e.target 
-      const title = form.title.value
-      const image = form.image.value
-      const category = form.category.value
-      const price = form.price.value
-      const description = form.description.value
-      const productData = {title,category,price,description,image,id:productsData.length+1}
-      dispatch(addProduct(productData))
+      const title1 = form.title.value
+      const image1 = form.image.value
+      const category1 = form.category.value
+      const price1 = form.price.value
+      const description1 = form.description.value
+      const productData = {title:title1,category:category1,price:price1,description:description1,image:image1,id}
+      dispatch(updateProduct(productData))
   }
 
   return (
     <>
-    <Link
-    onClick={()=>document.getElementById('my_modal_5').showModal()}
-              to="#"
-              className="inline-flex items-center justify-center gap-2.5 bg-primary py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-            >
-              <span>
-              <IoAddCircleOutline className='text-2xl'/>
-              </span>
-              Add new product
-            </Link>
-<dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+          <button className="btn btn-primary"   onClick={()=>document.getElementById(`my_modal_${id}`).showModal()}>Update Product</button>
+   
+<dialog id={`my_modal_${id}`} className="modal modal-bottom sm:modal-middle">
   <div className="modal-box dark:bg-black">
   <form method="dialog">
 
@@ -47,6 +42,7 @@ export default function AddProduct({productsData}) {
                   <input
                     name="title"
                     placeholder="Title"
+                    defaultValue={title}
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
                 </div>
@@ -56,6 +52,7 @@ export default function AddProduct({productsData}) {
                   </label>
                   <input
                     name="image"
+                    defaultValue={image}
                     placeholder="Product Image URL"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
@@ -67,6 +64,7 @@ export default function AddProduct({productsData}) {
                   </label>
                   <input
                     placeholder="Category"
+                    defaultValue={category}
                     name="category"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
@@ -78,6 +76,7 @@ export default function AddProduct({productsData}) {
                   </label>
                   <input
                     name="price"
+                    defaultValue={price}
                     type="number"
                     placeholder="Price"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -91,6 +90,7 @@ export default function AddProduct({productsData}) {
                   <textarea  
                     placeholder="Description"
                     name="description"
+                    defaultValue={description}
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   ></textarea>
                 </div>

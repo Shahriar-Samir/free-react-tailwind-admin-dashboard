@@ -22,10 +22,19 @@ const productsSlice = createSlice({
             const newArr = state.data.filter(item=> item.id !== parseFloat(action?.payload))
             state.data = newArr
         },
+        updateProductData: (state: {data:any[]},action: {payload:any})=>{
+            const newArr = state.data.map(item=>{
+                if(item.id === parseFloat(action.payload.id)){
+                    return action.payload
+                }
+                return item
+            })
+            state.data = newArr
+        },
     }
 })
 
-export const {setProductsData,addProductData,removeProductData} = productsSlice.actions
+export const {setProductsData,addProductData,removeProductData,updateProductData} = productsSlice.actions
 export default productsSlice.reducer
 
 export const getProducts = ()=> async (dispatch)=>{
@@ -40,15 +49,29 @@ export const getProducts = ()=> async (dispatch)=>{
 export const addProduct = (prodcutData:object)=> async (dispatch)=>{
      try{
         const res = await axios.post('https://fakestoreapi.com/products', prodcutData)
-        dispatch(addProductData(res.data))
+        if(res.data){
+            dispatch(addProductData(prodcutData))
+        }
      }
      catch(err){
         console.log(err)
      }
 } 
-export const removeProduct = (prodcutId:number)=> async (dispatch)=>{
+export const removeProduct = (productId:number)=> async (dispatch)=>{
      try{
-        const res = await axios.delete(`https://fakestoreapi.com/products/${prodcutId}`)
+        const res = await axios.delete(`https://fakestoreapi.com/products/${productId}`)
+        dispatch(removeProductData(productId))
+        return res.data
+     }
+     catch(err){
+        console.log(err)
+     }
+} 
+
+export const updateProduct = (productData)=> async (dispatch)=>{
+     try{
+         const res = await axios.put(`https://fakestoreapi.com/products/${productData.id}`)
+        dispatch(updateProductData(productData))
         return res.data
      }
      catch(err){

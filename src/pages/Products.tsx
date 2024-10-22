@@ -7,6 +7,7 @@ import { Product, ProductsState } from '../types/products2';
 import { getProducts, removeProductData } from '../Features/products/products';
 import {Card, CardHeader, CardBody, CardFooter} from "@nextui-org/card";
 import AddProduct from '../components/ProductsPage/AddProduct';
+import UpdateProduct from '../components/ProductsPage/UpdateProduct';
 
 
 
@@ -14,27 +15,23 @@ import AddProduct from '../components/ProductsPage/AddProduct';
 const Products:React.FC = () => {
     const productsData:Product[] = useSelector((state)=> state.products.data)
     const dispatch = useDispatch()
-    const location = useLocation()
 
-  console.log(location.state?.deleteProduct?.id)
+
     useEffect(()=>{
-        if(location.state?.deleteProduct?.state){
-          dispatch(removeProductData(location.state?.deleteProduct?.id))
-     
-        }
-        else{
-          dispatch(getProducts())
-    }
+        
+          if(productsData.length<1){
+            dispatch(getProducts())
+          }
+   
     },[])
 
 
-       
 
 
     return (
         <>
           <Breadcrumb pageName="Products" />   
-            <AddProduct/>
+            <AddProduct productsData={productsData}/>
             <main className='mt-10 w-full grid md:grid-cols-2 xl:grid-cols-3 gap-10'>
               {productsData.map(product=>{
                 return  <Card key={product.id} className="py-4 px-3 border-2">
@@ -45,9 +42,10 @@ const Products:React.FC = () => {
                     src={product.image}
                   />
                   <p className="text-tiny uppercase font-bold">{product.title}</p>
-                  <small className="text-default-500">{product.description.slice(0,100)}</small>
+                  {/* <small className="text-default-500">{product.description.slice(0,100)}</small> */}
              
                 </CardBody>
+                <UpdateProduct product={product}/>
                 <Link
               to={`/products/${product.id}`}
               className="inline-flex items-center justify-center bg-meta-3 py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
