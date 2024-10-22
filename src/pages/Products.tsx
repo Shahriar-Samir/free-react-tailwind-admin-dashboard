@@ -9,6 +9,7 @@ import UpdateProduct from '../components/ProductsPage/UpdateProduct';
 import DeleteProduct from '../components/ProductsPage/DeleteProduct';
 import { ToastContainer } from 'react-toastify';
 import { ProductsState, ProductType } from '../types/products2';
+import Loader from '../common/Loader';
 
 
 
@@ -29,7 +30,9 @@ const Products:React.FC = () => {
    
     },[])
 
-
+    if(productsData.length<1){
+      return <Loader/>
+    }
 
 
     return (
